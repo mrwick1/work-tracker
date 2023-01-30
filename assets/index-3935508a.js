@@ -351,7 +351,7 @@ and limitations under the License.
   gap: 10px;
 `,Nw=Ye.span`
   font-size: 19px;
-`,CV=()=>{const{shiftEndTime:e,shiftStartTime:t}=Xo(i=>i.timer),[n,r]=S.useState(0);S.useEffect(()=>{o()},[e,t]);const o=()=>{console.log(t,"akr");const i=se(e).diff(se(se()),"minutes"),s=Math.floor(i/480*100);0<=s&&s<101?r(100-s):r(0)};return we(wV,{children:[E(bV,{children:E(vV,{value:n,text:`${n}%`})}),E(kV,{children:"Statistics"}),E(xV,{children:"(Total)"}),we(SV,{children:[we($w,{children:[E(Rw,{color:rn.blue}),E(Nw,{children:"Completed"})]}),we($w,{children:[E(Rw,{color:rn["gray-600"]}),E(Nw,{children:"Remaining"})]})]})]})},_V=Ye.div`
+`,CV=()=>{const{shiftEndTime:e,shiftStartTime:t}=Xo(i=>i.timer),[n,r]=S.useState(0);S.useEffect(()=>{o()},[e,t]);const o=()=>{const i=se(e).diff(se(se()),"minutes"),s=Math.floor(i/480*100);0<=s&&s<101?r(100-s):r(0)};return we(wV,{children:[E(bV,{children:E(vV,{value:n,text:`${n}%`})}),E(kV,{children:"Statistics"}),E(xV,{children:"(Total)"}),we(SV,{children:[we($w,{children:[E(Rw,{color:rn.blue}),E(Nw,{children:"Completed"})]}),we($w,{children:[E(Rw,{color:rn["gray-600"]}),E(Nw,{children:"Remaining"})]})]})]})},_V=Ye.div`
   background-color: ${rn["gray-800"]};
   border-radius: 16px;
   grid-area: f;
