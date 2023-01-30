@@ -32,8 +32,8 @@ const AddBreak = () => {
       };
       if (startingTime && endingTime) {
         dispatch(addBreaks(Break));
+        localStorage.setItem('breaks', JSON.stringify([...breaks, Break]));
       }
-      localStorage.setItem('breaks', JSON.stringify([...breaks, Break]));
     } else {
       alert('Please choose a valid time');
     }

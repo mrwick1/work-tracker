@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FlexTime, Remaining, Time, TimeCard } from './TimeRemainingStyle';
 
-const TimeRemaining = ({ min = 300 }) => {
-  const { shiftEndTime } = useSelector((state) => state.timer);
+const TimeRemaining = () => {
+  const { shiftEndTime, breaks, shiftStartTime } = useSelector(
+    (state) => state.timer
+  );
   const [totalMinutes, setTotalMinutes] = useState(0);
   useEffect(() => {
     setTotalMinutes(moment(shiftEndTime).diff(moment(moment()), 'minutes'));
-  }, [shiftEndTime]);
+  }, [shiftEndTime, breaks, shiftStartTime]);
 
   const remaining =
     isNaN(totalMinutes) || totalMinutes < 0

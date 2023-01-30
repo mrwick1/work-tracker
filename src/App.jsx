@@ -12,11 +12,18 @@ import {
   setShiftStartTime,
 } from './features/timer/timerSlice';
 import moment from 'moment';
+import axios from 'axios';
+import { setUser } from './features/user/userSlice';
 const App = () => {
   const dispatch = useDispatch();
   const { shiftStartTime, defaultWorkingMinutes, breaks } = useSelector(
     (state) => state.timer
   );
+  const getProfile = async () => {
+    const user = await axios.get('https://api.github.com/users/mrwick1');
+    dispatch(setUser(user.data));
+  };
+
   useEffect(() => {
     dispatch(
       setShiftEndTime(
@@ -35,6 +42,7 @@ const App = () => {
         localStorage.removeItem('startTime');
       }
     }
+    getProfile();
   }, []);
 
   useEffect(() => {
