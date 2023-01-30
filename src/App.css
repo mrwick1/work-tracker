@@ -1,0 +1,33 @@
+.css-v4u5dn-MuiInputBase-root-MuiInput-root {
+  color: white !important;
+  border: none;
+  font-size: 3rem !important;
+  width: 53%;
+  margin: 0 0 0 auto;
+  font-family: 'Teko', sans-serif !important;
+  letter-spacing: unset !important;
+}
+.two-time .css-v4u5dn-MuiInputBase-root-MuiInput-root {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+}
+.css-v4u5dn-MuiInputBase-root-MuiInput-root svg {
+  color: white !important;
+}
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  padding: 0 !important;
+  outline: none;
+}
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #1d51fe;
+}
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #1d51fe;
+}
+@media screen and (max-width: 910px) {
+  .css-v4u5dn-MuiInputBase-root-MuiInput-root {
+    font-size: 35px !important;
+    width: 100%;
+  }
+}

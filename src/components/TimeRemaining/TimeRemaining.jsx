@@ -1,0 +1,32 @@
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { FlexTime, Remaining, Time, TimeCard } from './TimeRemainingStyle';
+
+const TimeRemaining = ({ min = 300 }) => {
+  const { shiftEndTime } = useSelector((state) => state.timer);
+  const [totalMinutes, setTotalMinutes] = useState(0);
+  useEffect(() => {
+    setTotalMinutes(moment(shiftEndTime).diff(moment(moment()), 'minutes'));
+  }, [shiftEndTime]);
+
+  const remaining =
+    isNaN(totalMinutes) || totalMinutes < 0
+      ? `${Math.floor(0 / 60)}h ${0 - Math.floor(0 / 60) * 60}m`
+      : `${Math.floor(totalMinutes / 60)}h ${
+          totalMinutes - Math.floor(totalMinutes / 60) * 60
+        }m`;
+  return (
+    <TimeCard>
+      <FlexTime>
+        <img src='/work-tracker/assets/images/Hourglass.png' alt='' />
+        <div>
+          <Time>{remaining}</Time>
+          <Remaining>Remaining</Remaining>
+        </div>
+      </FlexTime>
+    </TimeCard>
+  );
+};
+
+export default TimeRemaining;

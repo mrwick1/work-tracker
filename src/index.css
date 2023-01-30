@@ -1,0 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Teko', sans-serif;
+  color: #fff;
+  letter-spacing: 0.09em;
+}
+svg , path{
+  transition: all .3s ease-in;
+}
