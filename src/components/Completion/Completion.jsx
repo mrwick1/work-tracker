@@ -9,6 +9,7 @@ import {
   setShiftEndTime,
   setShiftStartTime,
 } from '../../features/timer/timerSlice';
+import { setTheme } from '../../features/user/userSlice';
 import {
   AdminIcon,
   Avatar,
@@ -25,20 +26,24 @@ import {
   SubTitle,
   Tag,
   Title,
+  Toggle,
 } from './CompletionStyle';
 
 const Completion = () => {
   const { shiftEndTime, shiftStartTime, breaks, defaultWorkingMinutes } =
     useSelector((state) => state.timer);
   const { user } = useSelector((state) => state.user);
-  const state = useSelector((state) => state);
+
+  const { theme } = useSelector((state) => state.user);
   const [percentage, setPercentage] = useState(0);
   const [isAboutVisible, setIsAboutVisible] = useState(false);
   const [animationEnable, setAnimationEnable] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     getPercentage();
   }, [shiftEndTime, shiftStartTime, breaks]);
+
   const getPercentage = () => {
     const balance = moment(shiftEndTime).diff(moment(moment()), 'minutes');
     const percentage1 = Math.floor((balance / 480) * 100);
@@ -48,6 +53,7 @@ const Completion = () => {
       setPercentage(0);
     }
   };
+
   const clearTimer = () => {
     localStorage.setItem('startTime', moment());
     localStorage.setItem('breaks', []);
@@ -60,7 +66,10 @@ const Completion = () => {
   };
 
   return isAboutVisible ? (
-    <CompleteCard2 animationEnable={animationEnable}>
+    <CompleteCard2
+      className={`${theme}-theme`}
+      animationEnable={animationEnable}
+    >
       <AdminIcon
         src='/work-tracker/assets/images/Admin.svg'
         onClick={() => {
@@ -86,7 +95,22 @@ const Completion = () => {
       </FlexB>
     </CompleteCard2>
   ) : (
-    <CompleteCard animationEnable={animationEnable}>
+    <CompleteCard
+      animationEnable={animationEnable}
+      className={`${theme}-theme`}
+    >
+      <Toggle>
+        <input
+          type='checkbox'
+          id='theme-toggle'
+          checked={theme === 'dark'}
+          onClick={() => {
+            localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
+            dispatch(setTheme(theme === 'light' ? 'dark' : 'light'));
+          }}
+        />
+        <label for='theme-toggle'></label>
+      </Toggle>
       <AdminIcon
         src='/work-tracker/assets/images/Admin.svg'
         onClick={() => {
@@ -102,7 +126,7 @@ const Completion = () => {
         />
       </Circle>
       <SubTitle>Statistics</SubTitle>
-      <Desc>(Total)</Desc>
+      <Desc className={`${theme}-theme`}>(Total)</Desc>
       <FlexMain>
         <Flex>
           <ColorPad color={colors.blue} />

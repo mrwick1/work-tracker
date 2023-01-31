@@ -1,13 +1,58 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   font-family: 'Teko', sans-serif;
   color: #fff;
   letter-spacing: 0.09em;
 }
-svg , path{
-  transition: all .3s ease-in;
+svg,
+path {
+  transition: all 0.3s ease-in;
+}
+body .dark-theme {
+  background-color: #afafaf;
+  color: black;
+}
+body .dark-theme input,
+body .dark-theme path {
+  color: black;
+}
+body .dark-theme img {
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+}
+#theme-toggle {
+  visibility: hidden;
+}
+.dark-line {
+  border-left-color: black !important;
+}
+.dark-color,
+.dark-color span {
+  color: black !important;
+}
+.dark-back {
+  background-color: black !important;
+}
+
+#theme-toggle + label {
+  content: '';
+  display: inline-block;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+#theme-toggle:not(:checked) + label {
+  background-color: gold;
+}
+
+#theme-toggle:checked + label {
+  background-color: transparent;
+  box-shadow: inset -10px -10px 1px -5px #fff;
 }

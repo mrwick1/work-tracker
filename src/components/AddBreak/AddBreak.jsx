@@ -21,6 +21,7 @@ const AddBreak = () => {
   const { breaks, shiftStartTime, shiftEndTime, defaultWorkingMinutes } =
     useSelector((state) => state.timer);
   startingTime;
+  const { theme } = useSelector((state) => state.user);
 
   const AddBreak = () => {
     if (moment(endingTime).diff(moment(startingTime), 'minutes') > 0) {
@@ -40,7 +41,7 @@ const AddBreak = () => {
   };
 
   return (
-    <AddCard className='two-time'>
+    <AddCard className={`${theme}-theme two-time`}>
       <FlexBetween>
         <AddSubTitle>Add Break</AddSubTitle>
         <img
@@ -65,7 +66,7 @@ const AddBreak = () => {
             />
           )}
         />
-        <To />
+        <To className={`${theme}-back`} />
         <ToText>To</ToText>
         <DesktopTimePicker
           value={endingTime}

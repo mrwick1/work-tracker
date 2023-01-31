@@ -13,12 +13,13 @@ import {
 } from './features/timer/timerSlice';
 import moment from 'moment';
 import axios from 'axios';
-import { setUser } from './features/user/userSlice';
+import { setTheme, setUser } from './features/user/userSlice';
 const App = () => {
   const dispatch = useDispatch();
   const { shiftStartTime, defaultWorkingMinutes, breaks } = useSelector(
     (state) => state.timer
   );
+  const { theme } = useSelector((state) => state.user);
   const getProfile = async () => {
     const user = await axios.get('https://api.github.com/users/mrwick1');
     dispatch(setUser(user.data));
@@ -47,8 +48,12 @@ const App = () => {
 
   useEffect(() => {
     const breaksLocal = localStorage.getItem('breaks');
+    const themeLocal = localStorage.getItem('theme');
     if (breaksLocal) {
       dispatch(loadBreaks(JSON.parse(breaksLocal)));
+    }
+    if (themeLocal) {
+      dispatch(setTheme(themeLocal));
     }
   }, []);
   useEffect(() => {

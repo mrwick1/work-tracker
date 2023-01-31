@@ -9,6 +9,8 @@ import {
   setShiftStartTime,
 } from '../../features/timer/timerSlice';
 const StartingTime = () => {
+  const { theme } = useSelector((state) => state.user);
+
   const hours = 9;
   const dispatch = useDispatch();
   const minutes = 0;
@@ -18,9 +20,9 @@ const StartingTime = () => {
   );
 
   return (
-    <StartingCard>
+    <StartingCard className={`${theme}-theme`}>
       <FlexBetween>
-        <TextBorder>
+        <TextBorder className={`${theme}-line`}>
           Starting Time
           <span>Shift Starting Time</span>
         </TextBorder>

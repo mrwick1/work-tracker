@@ -13,6 +13,7 @@ import moment from 'moment';
 const EndingTime = () => {
   const [endingTime, setEndingTime] = useState(false);
   const { shiftEndTime } = useSelector((state) => state.timer);
+  const { theme } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (shiftEndTime) {
@@ -21,9 +22,9 @@ const EndingTime = () => {
   }, [shiftEndTime]);
 
   return (
-    <StartingCard>
+    <StartingCard className={`${theme}-theme`}>
       <FlexBetween>
-        <TextBorder>
+        <TextBorder className={`${theme}-line`}>
           Ending Time
           <span>Shift Ending Time</span>
         </TextBorder>

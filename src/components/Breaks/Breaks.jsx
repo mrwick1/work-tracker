@@ -12,6 +12,7 @@ import {
 const Breaks = () => {
   const { breaks } = useSelector((state) => state.timer);
   const [breakMin, setBreakMin] = useState(0);
+  const { theme } = useSelector((state) => state.user);
   useEffect(() => {
     let min = 0;
     breaks &&
@@ -22,10 +23,10 @@ const Breaks = () => {
   }, [breaks]);
 
   return (
-    <BreakCard>
+    <BreakCard className={`${theme}-theme`}>
       <FlexBetween>
         <BreaksTitle>Breaks</BreaksTitle>
-        <Total>
+        <Total className={`${theme}-color`}>
           Total <span>{breakMin}mins</span>
         </Total>
       </FlexBetween>

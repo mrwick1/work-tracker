@@ -7,6 +7,8 @@ const TimeRemaining = () => {
   const { shiftEndTime, breaks, shiftStartTime } = useSelector(
     (state) => state.timer
   );
+  const { theme } = useSelector((state) => state.user);
+
   const [totalMinutes, setTotalMinutes] = useState(0);
   useEffect(() => {
     setTotalMinutes(moment(shiftEndTime).diff(moment(moment()), 'minutes'));
@@ -19,7 +21,7 @@ const TimeRemaining = () => {
           totalMinutes - Math.floor(totalMinutes / 60) * 60
         }m`;
   return (
-    <TimeCard>
+    <TimeCard className={`${theme}-theme`}>
       <FlexTime>
         <img src='/work-tracker/assets/images/Hourglass.png' alt='' />
         <div>

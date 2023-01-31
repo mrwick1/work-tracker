@@ -15,7 +15,6 @@ export const CompleteCard = styled.div`
   position: relative;
   transition: all 0.3s ease;
   transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-  /* transform: ${(props) => (props.isAboutVisible ? flip : '')}; */
   animation-name: ${(props) => props.animationEnable && spinAnimation};
   animation-duration: 0.5s;
   animation-iteration-count: forwards;
@@ -137,4 +136,10 @@ export const Reset = styled.img`
   right: 20px;
   bottom: 20px;
   cursor: pointer;
+`;
+
+export const Toggle = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 10px;
 `;
