@@ -465,7 +465,7 @@ and limitations under the License.
   @media (max-width: 670px) {
     width: 100%;
   }
-`;Re.div``;const rH=()=>{const[e,t]=k.useState(!1),{shiftEndTime:n,currentTime:r}=sn(c=>c.timer),{theme:o}=sn(c=>c.user),[i,s]=k.useState(0),[a,u]=k.useState(!1);return k.useEffect(()=>{n&&t(!0)},[n]),k.useEffect(()=>{r&&n&&(console.log(ie(n).diff(ie(r),"minutes"),"akr"),ie(n).diff(ie(r),"minutes")===0&&(a&&(s(i+1),i<2&&L9()),u(!0)))},[r,n]),me(QV,{className:`${o}-theme`,children:[D(JV,{children:me(eH,{className:`${o}-line ${o}-color`,children:["Ending Time",D("span",{children:"Shift Ending Time"})]})}),e?D(nH,{children:ie(n).format("hh:mm A")==="Invalid date"?"-- : -- --":ie(n).format("hh:mm A")}):D(tH,{children:"-- : -- --"})]})},oH=Re.div`
+`;Re.div``;const rH=()=>{const[e,t]=k.useState(!1),{shiftEndTime:n,currentTime:r}=sn(c=>c.timer),{theme:o}=sn(c=>c.user),[i,s]=k.useState(0),[a,u]=k.useState(!1);return k.useEffect(()=>{n&&t(!0)},[n]),k.useEffect(()=>{r&&n&&ie(n).diff(ie(r),"minutes")===0&&(a&&(s(i+1),i<2&&L9()),u(!0))},[r,n]),me(QV,{className:`${o}-theme`,children:[D(JV,{children:me(eH,{className:`${o}-line ${o}-color`,children:["Ending Time",D("span",{children:"Shift Ending Time"})]})}),e?D(nH,{children:ie(n).format("hh:mm A")==="Invalid date"?"-- : -- --":ie(n).format("hh:mm A")}):D(tH,{children:"-- : -- --"})]})},oH=Re.div`
   background-color: ${Zt["gray-800"]};
   border-radius: 16px;
   grid-area: d;
