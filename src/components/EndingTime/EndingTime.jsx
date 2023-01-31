@@ -10,16 +10,36 @@ import TextField from '@mui/material/TextField';
 import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import { notificationCheck } from '../../App';
 const EndingTime = () => {
   const [endingTime, setEndingTime] = useState(false);
-  const { shiftEndTime } = useSelector((state) => state.timer);
+  const { shiftEndTime, currentTime } = useSelector((state) => state.timer);
   const { theme } = useSelector((state) => state.user);
-
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [isFirstNotification, setIsFirstNotification] = useState(false);
   useEffect(() => {
     if (shiftEndTime) {
       setEndingTime(true);
     }
   }, [shiftEndTime]);
+
+  useEffect(() => {
+    if (currentTime && shiftEndTime) {
+      console.log(
+        moment(shiftEndTime).diff(moment(currentTime), 'minutes'),
+        'akr'
+      );
+      if (moment(shiftEndTime).diff(moment(currentTime), 'minutes') === 0) {
+        if (isFirstNotification) {
+          setNotificationCount(notificationCount + 1);
+          if (notificationCount < 1) {
+            notificationCheck();
+          }
+        }
+        setIsFirstNotification(true);
+      }
+    }
+  }, [currentTime, shiftEndTime]);
 
   return (
     <StartingCard className={`${theme}-theme`}>

@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux';
 import { FlexTime, Remaining, Time, TimeCard } from './TimeRemainingStyle';
 
 const TimeRemaining = () => {
-  const { shiftEndTime, breaks, shiftStartTime } = useSelector(
+  const { shiftEndTime, breaks, shiftStartTime, currentTime } = useSelector(
     (state) => state.timer
   );
   const { theme } = useSelector((state) => state.user);
 
   const [totalMinutes, setTotalMinutes] = useState(0);
   useEffect(() => {
-    setTotalMinutes(moment(shiftEndTime).diff(moment(moment()), 'minutes'));
-  }, [shiftEndTime, breaks, shiftStartTime]);
+    setTotalMinutes(moment(shiftEndTime).diff(moment(currentTime), 'minutes'));
+  }, [shiftEndTime, breaks, shiftStartTime, currentTime]);
 
   const remaining =
     isNaN(totalMinutes) || totalMinutes < 0

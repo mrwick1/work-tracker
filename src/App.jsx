@@ -8,6 +8,7 @@ import { store } from './store/store';
 import {
   addBreaks,
   loadBreaks,
+  setCurrentTime,
   setShiftEndTime,
   setShiftStartTime,
 } from './features/timer/timerSlice';
@@ -16,9 +17,13 @@ import axios from 'axios';
 import { setTheme, setUser } from './features/user/userSlice';
 const App = () => {
   const dispatch = useDispatch();
-  const { shiftStartTime, defaultWorkingMinutes, breaks } = useSelector(
-    (state) => state.timer
-  );
+  const {
+    shiftStartTime,
+    defaultWorkingMinutes,
+    breaks,
+    shiftEndTime,
+    currentTime,
+  } = useSelector((state) => state.timer);
   const { theme } = useSelector((state) => state.user);
   const getProfile = async () => {
     const user = await axios.get('https://api.github.com/users/mrwick1');
@@ -73,6 +78,15 @@ const App = () => {
     }
   }, [breaks]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const currentTimes = moment();
+      dispatch(setCurrentTime(currentTimes));
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <Home />
@@ -84,9 +98,12 @@ export const notificationCheck = () => {
   if ('Notification' in window) {
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
-        new Notification('Completed', {
+        var notification = new Notification('Completed', {
           body: 'Daily shift has been completed',
         });
+        notification.onclick = function () {
+          window.focus();
+        };
       }
     });
   }

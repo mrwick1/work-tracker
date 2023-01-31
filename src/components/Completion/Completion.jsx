@@ -30,8 +30,13 @@ import {
 } from './CompletionStyle';
 
 const Completion = () => {
-  const { shiftEndTime, shiftStartTime, breaks, defaultWorkingMinutes } =
-    useSelector((state) => state.timer);
+  const {
+    shiftEndTime,
+    shiftStartTime,
+    breaks,
+    defaultWorkingMinutes,
+    currentTime,
+  } = useSelector((state) => state.timer);
   const { user } = useSelector((state) => state.user);
 
   const { theme } = useSelector((state) => state.user);
@@ -42,10 +47,10 @@ const Completion = () => {
 
   useEffect(() => {
     getPercentage();
-  }, [shiftEndTime, shiftStartTime, breaks]);
+  }, [shiftEndTime, shiftStartTime, breaks, currentTime]);
 
   const getPercentage = () => {
-    const balance = moment(shiftEndTime).diff(moment(moment()), 'minutes');
+    const balance = moment(shiftEndTime).diff(moment(currentTime), 'minutes');
     const percentage1 = Math.floor((balance / 480) * 100);
     if (0 <= percentage1 && percentage1 < 101) {
       setPercentage(100 - percentage1);
@@ -55,13 +60,12 @@ const Completion = () => {
   };
 
   const clearTimer = () => {
-    localStorage.setItem('startTime', moment());
+    localStorage.setItem('startTime', currentTime);
     localStorage.setItem('breaks', []);
-    console.log(breaks);
     dispatch(loadBreaks([]));
-    dispatch(setShiftStartTime(moment()));
+    dispatch(setShiftStartTime(currentTime));
     dispatch(
-      setShiftEndTime(moment(moment()).add(defaultWorkingMinutes, 'minutes'))
+      setShiftEndTime(moment(currentTime).add(defaultWorkingMinutes, 'minutes'))
     );
   };
 
