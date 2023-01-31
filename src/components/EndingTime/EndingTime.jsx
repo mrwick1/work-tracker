@@ -24,7 +24,7 @@ const EndingTime = () => {
   return (
     <StartingCard className={`${theme}-theme`}>
       <FlexBetween>
-        <TextBorder className={`${theme}-line`}>
+        <TextBorder className={`${theme}-line ${theme}-color`}>
           Ending Time
           <span>Shift Ending Time</span>
         </TextBorder>

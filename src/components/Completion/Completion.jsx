@@ -81,7 +81,7 @@ const Completion = () => {
       <Title>GithuB Profile</Title>
       <FlexB>
         <a href={user?.html_url} target='_blank'>
-          <Avatar src={user?.avatar_url} />
+          <Avatar src={user?.avatar_url} className='img-avatar' />
         </a>
         <div>
           <Name>

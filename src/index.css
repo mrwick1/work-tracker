@@ -21,8 +21,12 @@ body .dark-theme path {
   color: black;
 }
 body .dark-theme img {
-  -webkit-filter: invert(100%); /* Safari/Chrome */
+  -webkit-filter: invert(100%);
   filter: invert(100%);
+}
+body .dark-theme .img-avatar {
+  -webkit-filter: invert(0) !important;
+  filter: invert(0) !important;
 }
 #theme-toggle {
   visibility: hidden;

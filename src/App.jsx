@@ -80,4 +80,16 @@ const App = () => {
   );
 };
 
+export const notificationCheck = () => {
+  if ('Notification' in window) {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        new Notification('Completed', {
+          body: 'Daily shift has been completed',
+        });
+      }
+    });
+  }
+};
+
 export default App;

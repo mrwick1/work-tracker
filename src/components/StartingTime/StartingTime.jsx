@@ -22,7 +22,7 @@ const StartingTime = () => {
   return (
     <StartingCard className={`${theme}-theme`}>
       <FlexBetween>
-        <TextBorder className={`${theme}-line`}>
+        <TextBorder className={`${theme}-line ${theme}-color`}>
           Starting Time
           <span>Shift Starting Time</span>
         </TextBorder>

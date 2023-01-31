@@ -8,7 +8,6 @@ import { Delete, FlexTime, SingleCard, Time } from './SingleBreakStyle';
 
 const SingleBreak = ({ empty, from, to, breakTime, id }) => {
   const dispatch = useDispatch();
-  const { breaks } = useSelector((state) => state.timer);
   const deleteHandler = (id) => {
     dispatch(deleteBreak(id));
     const breakss = JSON.parse(localStorage.getItem('breaks')).filter(
