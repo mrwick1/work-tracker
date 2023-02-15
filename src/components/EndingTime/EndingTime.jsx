@@ -25,14 +25,10 @@ const EndingTime = () => {
 
   useEffect(() => {
     if (currentTime && shiftEndTime) {
-      console.log(
-        moment(shiftEndTime).diff(moment(currentTime), 'minutes'),
-        'akr'
-      );
       if (moment(shiftEndTime).diff(moment(currentTime), 'minutes') === 0) {
         if (isFirstNotification) {
           setNotificationCount(notificationCount + 1);
-          if (notificationCount < 1) {
+          if (notificationCount < 2) {
             notificationCheck();
           }
         }

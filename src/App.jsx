@@ -17,14 +17,9 @@ import axios from 'axios';
 import { setTheme, setUser } from './features/user/userSlice';
 const App = () => {
   const dispatch = useDispatch();
-  const {
-    shiftStartTime,
-    defaultWorkingMinutes,
-    breaks,
-    shiftEndTime,
-    currentTime,
-  } = useSelector((state) => state.timer);
-  const { theme } = useSelector((state) => state.user);
+  const { shiftStartTime, defaultWorkingMinutes, breaks } = useSelector(
+    (state) => state.timer
+  );
   const getProfile = async () => {
     const user = await axios.get('https://api.github.com/users/mrwick1');
     dispatch(setUser(user.data));
